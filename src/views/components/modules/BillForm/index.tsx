@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import * as Type from './type';
 
-function BillForm({ submit }: { submit: (e: Type.default) => void }) {
+function BillForm({ onSubmit }: { onSubmit: (e: Type.default) => void }) {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState('');
@@ -47,7 +47,7 @@ function BillForm({ submit }: { submit: (e: Type.default) => void }) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (billType === null || frequencyType === null || frequency === null || per === null) return;
-    submit({
+    onSubmit({
       title,
       amount,
       category,

@@ -18,8 +18,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
           '@template': join(srcRoot, '/views/components/templates'),
           '@asset': join(srcRoot, '/views/assets'),
           '@model': join(srcRoot, '/model'),
-          '#': join(srcRoot, '/views/containers'),
-          '#store': join(srcRoot, '/stores')
+          '@store': join(srcRoot, '/stores')
         }
       },
       build: {
@@ -47,8 +46,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
         '@template': join(srcRoot, '/views/components/templates'),
         '@asset': join(srcRoot, '/views/assets'),
         '@model': join(srcRoot, '/model'),
-        '#': join(srcRoot, '/views/containers'),
-        '#store': join(srcRoot, '/stores')
+        '@store': join(srcRoot, '/stores')
       }
     },
     build: {

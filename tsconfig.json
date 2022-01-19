@@ -39,9 +39,6 @@
       "@model/*": [
         "src/models/*"
       ],
-      "#/*": [
-        "src/views/containers/*"
-      ],
       "@store/*": [
         "src/stores/*"
       ]
