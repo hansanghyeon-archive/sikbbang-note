@@ -1,57 +1,31 @@
+import type IBill from '@model/Bill';
+import type { BILLTYPE, FREQUENCYTYPE, FREQUENCY, PER } from '@model/Bill';
+
 export type Option = {
   value: string;
   label: string;
 };
 
-export enum BillType {
-  INCOME = 'income',
-  EXPENSE = 'expense'
-}
-
 export type BillOption = {
-  value: BillType;
+  value: BILLTYPE;
   label: string;
 };
-
-export enum FrequencyType {
-  FIXED = 'fixed',
-  VARIABLE = 'variable'
-}
 
 export type FrequencyTypeOption = {
-  value: FrequencyType;
+  value: FREQUENCYTYPE;
   label: string;
 };
-
-export enum Frequency {
-  ONCE = 'once',
-  REGULAR = 'regular'
-}
 
 export type FrequencyOption = {
-  value: Frequency;
+  value: FREQUENCY;
   label: string;
 };
-
-export enum Per {
-  MONTH = 'month',
-  YEAR = 'year'
-}
 
 export type PerOption = {
-  value: Per;
+  value: PER;
   label: string;
 };
 
-type propsType = {
-  title: string;
-  amount: number;
-  category: string;
-  type: BillType;
-  frequencyType: FrequencyType;
-  frequency: Frequency;
-  per: Per;
+export default interface IBillForm extends IBill {
   total: number;
-};
-
-export default propsType;
+}

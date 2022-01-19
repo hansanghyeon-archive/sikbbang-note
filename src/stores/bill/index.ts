@@ -1,27 +1,21 @@
-const BILL_ADD = 'BILL_ADD' as const;
+import { createAction, ActionType, createReducer } from 'typesafe-actions';
+import type IBill from '@model/Bill';
 
-export const addBill = () => ({
-  type: BILL_ADD
-});
+const BILL_ADD = 'bill/ADD' as const;
 
-type billAction = ReturnType<typeof addBill>;
+export const addBill = createAction(BILL_ADD)();
 
-export type billState = {
-  items: Array<number>;
+const actions = { addBill };
+type BillAction = ActionType<typeof actions>;
+
+export type BillState = {
+  items: Array<IBill>;
 };
 
-const initialState: billState = {
-  items: [1, 2, 3, 4]
+const initialState: BillState = {
+  items: []
 };
 
-// eslint-disable-next-line default-param-last
-const bill = (state: billState = initialState, action: billAction): billState => {
-  switch (action.type) {
-    case BILL_ADD:
-      return { ...state };
-    default:
-      return state;
-  }
-};
+const bill = createReducer<BillState, BillAction>(initialState, {});
 
 export default bill;
