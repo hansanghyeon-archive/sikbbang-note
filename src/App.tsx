@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderMain from './components/header/Main';
-import BillForm from './components/modules/Bill/Form';
+import BillForm from './components/Bill/Form';
 
 function App() {
   return (
