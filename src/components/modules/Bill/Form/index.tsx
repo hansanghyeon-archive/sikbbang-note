@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import * as Type from './type';
 
-type Option = {
-  value: string;
-  label: string;
-};
-
-function Bill({ submit }) {
+function BillForm({ submit }: { submit: (e: Type.default) => void }) {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState('');
-  const [type, setType] = useState<Option|null>(null);
-  const [frequencyType, setFrequencyType] = useState<Option|null>(null); // 주기 고정,변동
-  const [frequency, setFrequency] = useState<Option|null>(null); // 주기 일시, 정기
-  const [per, setPer] = useState<Option|null>(null); // 주기 월,년
+  const [billType, setBillType] = useState<Type.BillOption | null>(null);
+  const [frequencyType, setFrequencyType] = useState<Type.FrequencyTypeOption | null>(null); // 주기 고정,변동
+  const [frequency, setFrequency] = useState<Type.FrequencyOption | null>(null); // 주기 일시, 정기
+  const [per, setPer] = useState<Type.PerOption | null>(null); // 주기 월,년
   const [total, setTotla] = useState(0);
 
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,49 +28,50 @@ function Bill({ submit }) {
     setCategory(e.target.value);
   };
 
-  const handleType = (option: Option | null) => {
-    setType(option);
+  const handleBillType = (option: Type.BillOption | null) => {
+    setBillType(option);
   };
 
-  const handleFrequencyType = (option: Option | null) => {
+  const handleFrequencyType = (option: Type.FrequencyTypeOption | null) => {
     setFrequencyType(option);
   };
 
-  const handleFrequency = (option: Option | null) => {
+  const handleFrequency = (option: Type.FrequencyOption | null) => {
     setFrequency(option);
   };
 
-  const handlePer = (option: Option | null) => {
+  const handlePer = (option: Type.PerOption | null) => {
     setPer(option);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (billType === null || frequencyType === null || frequency === null || per === null) return;
     submit({
       title,
       amount,
       category,
-      type: type!.value,
-      frequencyType: frequencyType!.value,
-      frequency: frequency!.value,
-      per: per!.value,
+      type: billType.value,
+      frequencyType: frequencyType.value,
+      frequency: frequency.value,
+      per: per.value,
       total
     });
   };
 
   useEffect(() => {
     if (frequencyType === null || frequency === null) return;
-    if (frequencyType!.value === 'fixed' && frequency!.value === 'regular') {
-      console.log(frequencyType, frequency, per);
-      if (per!.value === 'month') {
+    if (frequency?.value === Type.Frequency.REGULAR) {
+      if (per?.value === 'month') {
         setTotla(amount * 12);
-        console.log(amount * 12);
-      }
-      if (per!.value === 'year') {
+      } else {
         setTotla(amount);
       }
     }
-  }, [amount, frequencyType, frequency, total]);
+    if (frequency?.value === Type.Frequency.ONCE) {
+      setTotla(amount);
+    }
+  }, [amount, frequencyType, frequency, total, per]);
 
   return (
     <form action="" onSubmit={handleSubmit}>
@@ -97,11 +94,11 @@ function Bill({ submit }) {
         </div>
         <div className="col-span-3">
           <Select
-            value={type}
-            onChange={handleType}
+            value={billType}
+            onChange={handleBillType}
             options={[
-              { value: 'income', label: '수입' },
-              { value: 'expense', label: '지출' }
+              { value: Type.BillType.INCOME, label: '수입' },
+              { value: Type.BillType.EXPENSE, label: '지출' }
             ]}
           />
         </div>
@@ -110,8 +107,8 @@ function Bill({ submit }) {
             value={frequencyType}
             onChange={handleFrequencyType}
             options={[
-              { value: 'fixed', label: '고정' },
-              { value: 'variable', label: '변동' }
+              { value: Type.FrequencyType.FIXED, label: '고정' },
+              { value: Type.FrequencyType.VARIABLE, label: '변동' }
             ]}
           />
         </div>
@@ -120,8 +117,8 @@ function Bill({ submit }) {
             value={frequency}
             onChange={handleFrequency}
             options={[
-              { value: 'once', label: '일시' },
-              { value: 'regular', label: '정기' }
+              { value: Type.Frequency.ONCE, label: '일시' },
+              { value: Type.Frequency.REGULAR, label: '정기' }
             ]}
           />
         </div>
@@ -129,9 +126,10 @@ function Bill({ submit }) {
           <Select
             value={per}
             onChange={handlePer}
+            isDisabled={frequency?.value === Type.Frequency.ONCE}
             options={[
-              { value: 'month', label: '월' },
-              { value: 'year', label: '년' }
+              { value: Type.Per.MONTH, label: '월' },
+              { value: Type.Per.YEAR, label: '년' }
             ]}
           />
         </div>
@@ -148,4 +146,4 @@ function Bill({ submit }) {
   );
 }
 
-export default Bill;
+export default BillForm;

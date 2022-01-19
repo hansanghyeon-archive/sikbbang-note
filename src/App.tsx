@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderMain from './components/header/Main';
-import Bill from './components/modules/Bill';
+import BillForm from './components/modules/Bill/Form';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <HeaderMain />
       <main>
         <div className="container mx-auto py-[32px]">
-          <Bill submit={(e) => console.log(e)} />
+          <BillForm submit={(e) => console.log(e)} />
         </div>
         <div className="grid grid-cols-[repeat(8,auto)]">
           <div>항목</div>
