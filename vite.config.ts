@@ -13,7 +13,13 @@ export default ({ command }: ConfigEnv): UserConfig => {
       plugins: [react()],
       resolve: {
         alias: {
-          '/@': srcRoot
+          '@atom': join(srcRoot, '/views/components/atoms'),
+          '@module': join(srcRoot, '/views/components/modules'),
+          '@template': join(srcRoot, '/views/components/templates'),
+          '@asset': join(srcRoot, '/views/assets'),
+          '@model': join(srcRoot, '/model'),
+          '#': join(srcRoot, '/views/containers'),
+          '#store': join(srcRoot, '/stores')
         }
       },
       build: {
@@ -36,7 +42,13 @@ export default ({ command }: ConfigEnv): UserConfig => {
     plugins: [react()],
     resolve: {
       alias: {
-        '/@': srcRoot
+        '@atom': join(srcRoot, '/views/components/atoms'),
+        '@module': join(srcRoot, '/views/components/modules'),
+        '@template': join(srcRoot, '/views/components/templates'),
+        '@asset': join(srcRoot, '/views/assets'),
+        '@model': join(srcRoot, '/model'),
+        '#': join(srcRoot, '/views/containers'),
+        '#store': join(srcRoot, '/stores')
       }
     },
     build: {
