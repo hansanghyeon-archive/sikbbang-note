@@ -5756,6 +5756,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"redux-devtools-extension@npm:^2.13.9":
+  version: 2.13.9
+  resolution: "redux-devtools-extension@npm:2.13.9"
+  peerDependencies:
+    redux: ^3.1.0 || ^4.0.0
+  checksum: 603d48fd6acf3922ef373b251ab3fdbb990035e90284191047b29d25b06ea18122bc4ef01e0704ccae495acb27ab5e47b560937e98213605dd88299470025db9
+  languageName: node
+  linkType: hard
+
 "redux@npm:^4.0.0, redux@npm:^4.1.2":
   version: 4.1.2
   resolution: "redux@npm:4.1.2"
@@ -6683,6 +6692,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typesafe-actions@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "typesafe-actions@npm:5.1.0"
+  checksum: 63f973ca93fcd2a037bf994ec6b173a5bf2fe2eba04ea64d8ddc49f3fcac5506d4209d61e020ab07dd39a21539d9f03fbf7c9ed7a22244c3c6c0758e438f6ef5
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.5.4":
   version: 4.5.4
   resolution: "typescript@npm:4.5.4"
@@ -6864,9 +6880,11 @@ __metadata:
     react-redux: ^7.2.6
     react-select: ^5.2.2
     redux: ^4.1.2
+    redux-devtools-extension: ^2.13.9
     styled-components: ^5.3.3
     tailwind-styled-components: ^2.1.1
     tailwindcss: ^3.0.5
+    typesafe-actions: ^5.1.0
     typescript: ^4.5.4
     vite: ^2.7.2
   languageName: unknown

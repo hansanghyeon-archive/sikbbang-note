@@ -38,8 +38,10 @@
     "react-redux": "^7.2.6",
     "react-select": "^5.2.2",
     "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.3",
     "tailwind-styled-components": "^2.1.1",
+    "typesafe-actions": "^5.1.0",
     "vite": "^2.7.2"
   },
   "devDependencies": {
