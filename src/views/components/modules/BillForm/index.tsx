@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import type IBill from '@model/Bill';
 import { BILLTYPE, FREQUENCYTYPE, FREQUENCY, PER } from '@model/Bill';
+import useBill from '@hook/useBill';
 import type * as Type from './type';
 
 function BillForm({ onSubmit }: { onSubmit: (e: IBill) => void }) {
@@ -12,7 +13,6 @@ function BillForm({ onSubmit }: { onSubmit: (e: IBill) => void }) {
   const [frequencyType, setFrequencyType] = useState<Type.FrequencyTypeOption | null>(null); // 주기 고정,변동
   const [frequency, setFrequency] = useState<Type.FrequencyOption | null>(null); // 주기 일시, 정기
   const [per, setPer] = useState<Type.PerOption | null>(null); // 주기 월,년
-  const [total, setTotla] = useState(0);
 
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -56,24 +56,16 @@ function BillForm({ onSubmit }: { onSubmit: (e: IBill) => void }) {
       type: billType.value,
       frequencyType: frequencyType.value,
       frequency: frequency.value,
-      per: per.value,
-      total
+      per: per.value
     });
   };
 
-  useEffect(() => {
-    if (frequencyType === null || frequency === null) return;
-    if (frequency?.value === FREQUENCY.REGULAR) {
-      if (per?.value === 'month') {
-        setTotla(amount * 12);
-      } else {
-        setTotla(amount);
-      }
-    }
-    if (frequency?.value === FREQUENCY.ONCE) {
-      setTotla(amount);
-    }
-  }, [amount, frequencyType, frequency, total, per]);
+  const { total } = useBill({
+    amount,
+    frequencyType: frequencyType?.value,
+    frequency: frequency?.value,
+    per: per?.value
+  });
 
   return (
     <form action="" onSubmit={handleSubmit}>

@@ -26,5 +26,4 @@ export default interface IBill {
   frequencyType: FREQUENCYTYPE;
   frequency: FREQUENCY;
   per: PER;
-  total: number;
 }

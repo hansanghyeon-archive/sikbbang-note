@@ -1,4 +1,3 @@
-import type IBill from '@model/Bill';
 import type { BILLTYPE, FREQUENCYTYPE, FREQUENCY, PER } from '@model/Bill';
 
 export type Option = {
@@ -25,7 +24,3 @@ export type PerOption = {
   value: PER;
   label: string;
 };
-
-export default interface IBillForm extends IBill {
-  total: number;
-}

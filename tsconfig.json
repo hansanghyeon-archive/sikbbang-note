@@ -41,7 +41,10 @@
       ],
       "@store/*": [
         "src/stores/*"
-      ]
+      ],
+      "@hook/*": [
+        "src/hooks/*"
+      ],
     }
   },
   "exclude": [
