@@ -18,9 +18,9 @@
   },
   "productName": "vite-reactts-electron-starter",
   "scripts": {
-    "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
-    "dev:vite": "vite",
-    "dev:electron": "npm run build:electron && electron .",
+    "start": "concurrently \"yarn start:vite\" \" yarn start:electron\"",
+    "start:vite": "vite",
+    "start:electron": "npm run build:electron && electron .",
     "build": "npm run build:vite && npm run build:electron",
     "build:vite": "vite build",
     "build:electron": "tsc -p electron",
@@ -83,5 +83,6 @@
     "directories": {
       "buildResources": "resources"
     }
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
